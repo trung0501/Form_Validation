@@ -16,16 +16,20 @@ const handleFormData = (e) => {
     // Retrieving input elements
     const fullnameInput = document.getElementById("fullname");
     const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
     const dateInput = document.getElementById("date");
     const genderInput = document.getElementById("gender");
+   
     // Getting trimmed values from input fields
     const fullname = fullnameInput.value.trim();
     const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
     const password = passwordInput.value.trim();
     const date = dateInput.value;
     const gender = genderInput.value;
     // Regular expression pattern for email validation
     const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    const phonePattern = /^[0-9]{10,15}$/;
     // Clearing previous error messages
     document.querySelectorAll(".form-group .error").forEach(field => field.classList.remove("error"));
     document.querySelectorAll(".error-text").forEach(errorText => errorText.remove());
@@ -35,6 +39,9 @@ const handleFormData = (e) => {
     }
     if (!emailPattern.test(email)) {
         showError(emailInput, "Enter a valid email address");
+    }
+    if (!phonePattern.test(phone)) {
+        showError(phoneInput, "Enter a valid phone number (10-15 digits)");
     }
     if (password === "") {
         showError(passwordInput, "Enter your password");
